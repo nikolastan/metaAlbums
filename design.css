@@ -1,0 +1,14 @@
+#main{
+    margin: auto;
+    width: 100%;
+}
+
+#search{
+    width: 50%;
+}
+
+.mainContent{
+    text-align: center;
+    margin: auto;
+    display: block;
+}

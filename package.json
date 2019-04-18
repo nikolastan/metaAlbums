@@ -1,0 +1,28 @@
+{
+  "name": "metaalbums",
+  "version": "1.0.0",
+  "description": "metaAlbums",
+  "main": "index.js",
+  "dependencies": {
+    "rxjs": "^6.4.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1",
+    "webpack": "^4.30.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikolastan/metaAlbums.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikolastan/metaAlbums/issues"
+  },
+  "homepage": "https://github.com/nikolastan/metaAlbums#readme"
+}

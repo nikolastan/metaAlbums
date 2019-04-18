@@ -1,0 +1,16 @@
+{
+    "albums" : [
+        {
+            "id" : "demondays",
+            "title" : "Demon Days",
+            "artist" : "Gorillaz",
+            "year" : "2005"
+        },
+        {
+            "id" : "sars",
+            "title" : "S.A.R.S.",
+            "artist" : "S.A.R.S.",
+            "year" : "2007"
+        }
+    ]
+}
