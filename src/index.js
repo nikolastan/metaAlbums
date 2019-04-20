@@ -1,13 +1,24 @@
 import {from, fromEvent} from "rxjs";
 import {map, debounceTime, filter, switchMap} from "rxjs/operators";
+import {Builder} from "./builder.js";
+import {Album} from "./album.js";
 
+
+const builder = new Builder();
 const search = document.getElementById("search");
-const listOfAlbums = [];
 
 const observer = {
     next : function(value){
+        let listOfAlbums = [];
+        if(Array.isArray(value))
+            value.forEach(element => {
+                listOfAlbums.push(new Album(element.id, element.title, element.artist, element.year, element.rating, element.cover));
+            });
+        else
+            listOfAlbums.push(new Album(value.id, value.title, value.artist, value.year, value.rating, value.cover))
+        builder.drawTable(listOfAlbums);
         //updateTable(value);
-        console.log(value);
+        console.log(listOfAlbums);
     },
     error : function(error){
         //displayOops();
