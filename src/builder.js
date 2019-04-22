@@ -1,11 +1,12 @@
 const tableHeadHTML = "<thead><tr><th></th><th>Title</th><th>Artist</th><th>Year</th></thead>";
+const sub = document.getElementById("sub");
 
 export class Builder
 {
 
     drawTable(arrayOfAlbums)
     {
-        document.getElementById("sub").style.display = "block";
+        sub.style.display = "block";
         const table = document.getElementById("searchResults");
         if(table.innerHTML !== tableHeadHTML)
             table.innerHTML = tableHeadHTML;
@@ -13,5 +14,10 @@ export class Builder
             //console.log(element);
             element.drawAlbumTable(table);
         });
+    }
+
+    noResults()
+    {
+        sub.style.display = "none";
     }
 }

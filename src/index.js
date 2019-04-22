@@ -1,15 +1,23 @@
-import {from, fromEvent} from "rxjs";
-import {map, debounceTime, filter, switchMap} from "rxjs/operators";
+import {from, fromEvent, of} from "rxjs";
+import {map, debounceTime, filter, switchMap, catchError} from "rxjs/operators";
 import {Builder} from "./builder.js";
 import {Album} from "./album.js";
 
 
 const builder = new Builder();
 const search = document.getElementById("search");
+var listOfAlbums = [];
 
-const observer = {
+const observerSearch = {
     next : function(value){
-        let listOfAlbums = [];
+        listOfAlbums = [];
+        if(value.length === 0)
+            {
+                console.log("No results!");
+                builder.noResults();
+                return
+            }
+        console.log(value);
         if(Array.isArray(value))
             value.forEach(element => {
                 listOfAlbums.push(new Album(element.id, element.title, element.artist, element.year, element.rating, element.cover));
@@ -17,7 +25,6 @@ const observer = {
         else
             listOfAlbums.push(new Album(value.id, value.title, value.artist, value.year, value.rating, value.cover))
         builder.drawTable(listOfAlbums);
-        //updateTable(value);
         console.log(listOfAlbums);
     },
     error : function(error){
@@ -26,17 +33,10 @@ const observer = {
     }
 }
 
-function getAlbum(id){
+function getAlbums(searchString){
     return from(
-        fetch(`http://localhost:3000/albums/${id}`)
-        .then(response => {
-            if(response.status === 404){
-                return fetch(`http://localhost:3000/albums`)
-                .then(response => response.json());
-            }
-            else
-                return response.json();
-        })
+        fetch(`http://localhost:3000/albums?q=${searchString}`)
+        .then(response => response.json())
     );
 }
 
@@ -50,5 +50,8 @@ function getAlbum(id){
 fromEvent(search, "input").pipe(
     debounceTime(1000),
     map(ev => ev.target.value),
-    switchMap(id => getAlbum(id))
-).subscribe(observer);
+    filter(function(value){
+        return value !== "";
+    }),
+    switchMap(string => getAlbums(string))
+).subscribe(observerSearch);
