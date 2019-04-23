@@ -1,15 +1,15 @@
 {
     "albums" : [
         {
+            "id" : 0,
             "cover" : "https://images-na.ssl-images-amazon.com/images/I/71lix6%2BVfWL._SY355_.jpg",
-            "id" : "demondays",
             "title" : "Demon Days",
             "artist" : "Gorillaz",
             "year" : "2005"
         },
         {
+            "id" : 1,
             "cover" : "https://upload.wikimedia.org/wikipedia/sr/thumb/1/13/Sars_omot.jpg/220px-Sars_omot.jpg",
-            "id" : "sars",
             "title" : "S.A.R.S.",
             "artist" : "S.A.R.S.",
             "year" : "2007"
