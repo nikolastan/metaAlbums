@@ -1,5 +1,5 @@
-import {from, fromEvent} from "rxjs";
-import {map, debounceTime, filter, switchMap} from "rxjs/operators";
+import {from, fromEvent, timer} from "rxjs";
+import {map, debounceTime, filter, switchMap, take} from "rxjs/operators";
 import {Builder} from "./builder.js";
 import {Album} from "./album.js";
 
@@ -8,11 +8,20 @@ export class Functionality
 {
     constructor(){
         this.builder = new Builder();
+        this.builder.newAlbumHandlers();
     }
 
-    getAlbums(searchString){
+    getAlbumsByTitle(searchString){
         return from(
             fetch(`http://localhost:3000/albums?title_like=${searchString}`)
+            .then(response => response.json())
+        );
+    }
+
+    getAlbumById(id)
+    {
+        return from(
+            fetch(`http://localhost:3000/albums/${id}`)
             .then(response => response.json())
         );
     }
@@ -24,7 +33,7 @@ export class Functionality
                 var listOfAlbums = [];
                 if(value.length === 0)
                     {
-                        builder.noResults();
+                        builder.noResults(true);
                         return
                     }
                 if(Array.isArray(value))
@@ -52,7 +61,74 @@ export class Functionality
         filter(function(value){
             return value !== "";
         }),
-        switchMap(string => this.getAlbums(string))
+        switchMap(string => this.getAlbumsByTitle(string))
     ).subscribe(observerSearch);
+    }
+
+    createObserverRandomAlbum()
+    {
+        var builder = this.builder;
+        const observerRandomAlbum = {
+            next : function(value){
+                builder.updateRandomAlbum(new Album(value.id, value.title, value.artist, value.year, value.rating, value.cover))
+            }
+        }
+
+        return observerRandomAlbum;
+    }
+
+    initiateRandomAlbum(observerRandomAlbum)
+    {
+        function* generator(min, max){
+            while (true) {
+              yield Math.round(Math.random() * (max - min) + min);
+            }
+          }
+
+        var builder = this;
+        function generateAlbum(currentNumber) { 
+            return from(generator(0, currentNumber)).pipe(
+                take(1),
+                switchMap(value => builder.getAlbumById(value))
+            )
+        }
+
+        this.getNumberOfAlbums().pipe(
+            switchMap(number => generateAlbum(number-1))
+        ).subscribe(observerRandomAlbum);
+    }
+
+    initiateNumberOfAlbums(observerNumber)
+    {
+        var numberOfAlbums = timer(0, 5000).pipe(
+            switchMap(value => this.getNumberOfAlbums())
+        );
+        numberOfAlbums.subscribe(observerNumber);
+    }
+
+    getNumberOfAlbums()
+    {
+        var numberOfAlbums = from(
+            fetch(`http://localhost:3000/albums`)
+            .then(response => response.json())
+        ).pipe(
+           map(value => value.length)
+        )
+
+        return numberOfAlbums;
+    }
+
+    createObserverNumber()
+    {
+        var builder = this.builder;
+        const observerNumber = {
+            next : function(value){
+                builder.updateNumberOfAlbums(value);
+            }, 
+            complete : function() {
+                console.log("Completed!");
+            }
+        }
+        return observerNumber;
     }
 }

@@ -2,37 +2,26 @@ export class Builder
 {
     constructor()
     {
-        this.hideSearchNoResults();
+        this.noResults(false);
     }
 
-    hideSearch()
+    noResults(choice)
     {
-        const sub = document.getElementById("sub");
         const noResults = document.getElementById("noResults");
-        sub.className = "hide";
-        noResults.className = "";
-    }
-
-    hideNoResults()
-    {
-        const sub = document.getElementById("sub");
-        const noResults = document.getElementById("noResults");
-        sub.className = "";
-        noResults.className = "hide";
-    }
-
-    hideSearchNoResults()
-    {
-        const sub = document.getElementById("sub");
-        const noResults = document.getElementById("noResults");
-        sub.className = "hide";
-        noResults.className = "hide";
+        const table = document.getElementById("searchResults");
+        if(choice === true)
+        {
+            noResults.className = "";
+            table.innerHTML = "";
+        }
+        else
+            noResults.className = "hide";
     }
 
     drawTable(arrayOfAlbums)
     {
-        this.hideNoResults();
-        const tableHeadHTML = "<thead><tr><th></th><th>Title</th><th>Artist</th><th>Year</th></thead>";
+        this.noResults(false);
+        const tableHeadHTML = "<thead><tr><th></th><th>Title</th><th>Artist</th><th>Year</th><th>Rating</th></thead>";
         const table = document.getElementById("searchResults");
         if(table.innerHTML !== tableHeadHTML)
             table.innerHTML = tableHeadHTML;
@@ -41,11 +30,57 @@ export class Builder
         });
     }
 
-    noResults()
+    newAlbumHandlers()
     {
-        const newAlbum = document.getElementById("newAlbum");
-        this.hideSearch();
-        newAlbum.onclick = (ev) => window.open("./newalbum.html", 'New Album Entry', 'height=500,width=400' ).focus();
+        const newAlbumButtons = document.getElementsByClassName("newAlbum");
+        Array.from(newAlbumButtons).forEach(element => {
+            element.onclick = (ev) => window.open("./newalbum.html", 'New Album Entry', 'height=500,width=400' ).focus();
+        });
+    }
+
+    randomAlbum(host)
+    {
+        const albumContainer = document.createElement("div");
+        albumContainer.id = "randomAlbum";
+        host.appendChild(albumContainer);
+    }
+
+    updateRandomAlbum(album)
+    {
+        const randomAlbumContainer = document.getElementById("randomAlbumContainer");
+        var albumContainer = document.getElementById("randomAlbum");
+        if(albumContainer == null)
+        {
+            this.randomAlbum(randomAlbumContainer);
+            albumContainer = document.getElementById("randomAlbum");
+        }
+        album.drawAlbum(albumContainer);
+    }
+
+    numberOfAlbums(host)
+    {
+        const numberContainer = document.createElement("div");
+        numberContainer.className = "numberContainer";
+        host.appendChild(numberContainer);
+        let label = document.createElement("label");
+        label.innerHTML = "Number of albums in database: ";
+        numberContainer.appendChild(label);
+        label = document.createElement("h2");
+        label.id = "numberOfAlbums";
+        numberContainer.appendChild(label);
+    }
+
+    updateNumberOfAlbums(number)
+    {
+        const container = document.getElementById("sub");
+        var numberOfAlbums = document.getElementById("numberOfAlbums");
+        if(numberOfAlbums == null)
+        {
+            this.numberOfAlbums(container);
+            var numberOfAlbums = document.getElementById("numberOfAlbums");
+        }
+
+        numberOfAlbums.innerHTML = number;
     }
 
     /* drawTimeSpent()
