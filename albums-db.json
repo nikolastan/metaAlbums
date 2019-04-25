@@ -1,22 +1,121 @@
 {
-    "albums" : [
-        {
-            "id" : 0,
-            "cover" : "https://images-na.ssl-images-amazon.com/images/I/71lix6%2BVfWL._SY355_.jpg",
-            "title" : "Demon Days",
-            "artist" : "Gorillaz",
-            "year" : "2005",
-            "rating" : 7.2,
-            "tags" : "rock, pop, british"
-        },
-        {
-            "id" : 1,
-            "cover" : "https://upload.wikimedia.org/wikipedia/sr/thumb/1/13/Sars_omot.jpg/220px-Sars_omot.jpg",
-            "title" : "S.A.R.S.",
-            "artist" : "S.A.R.S.",
-            "year" : "2007",
-            "rating" : 6.1,
-            "tags" : "rock, pop, rap, serbian"
-        }
-    ]
+  "albums": [
+    {
+      "cover": "https://images-na.ssl-images-amazon.com/images/I/71lix6%2BVfWL._SY355_.jpg",
+      "title": "Demon Days",
+      "artist": "Gorillaz",
+      "year": "2005",
+      "rating": "7.2",
+      "tags": "rock, pop, british",
+      "id": 0
+    },
+    {
+      "cover": "https://upload.wikimedia.org/wikipedia/sr/thumb/1/13/Sars_omot.jpg/220px-Sars_omot.jpg",
+      "title": "S.A.R.S.",
+      "artist": "S.A.R.S.",
+      "year": "2007",
+      "rating": "6.1",
+      "tags": "rock, pop, rap, serbian",
+      "id": 1
+    },
+    {
+      "title": "Blue Lines",
+      "artist": "Massive Attack",
+      "year": "1991",
+      "rating": "6.6",
+      "tags": "triphop, soul",
+      "cover": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/MassiveAttackBlueLines.jpg/220px-MassiveAttackBlueLines.jpg",
+      "id": 2
+    },
+    {
+      "title": "Gorillaz",
+      "artist": "Gorillaz",
+      "year": "2001",
+      "rating": "7.5",
+      "tags": "Alternative, rock, hip hop, trip hop, dub, electronica",
+      "cover": "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/GorillazAlbum.jpg/220px-GorillazAlbum.jpg",
+      "id": 3
+    },
+    {
+      "title": "Nice to Meat You",
+      "artist": "Danny Barranowsky",
+      "year": "2010",
+      "rating": "7.7",
+      "tags": "Video game music",
+      "cover": "data:image/jpeg;base64,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",
+      "id": 4
+    },
+    {
+      "title": "Dopethrone",
+      "artist": "Electric Wizard",
+      "year": "2000",
+      "rating": "7.7",
+      "tags": "doom metal, sludge metal, stoner rock",
+      "cover": "https://images-na.ssl-images-amazon.com/images/I/613xjc58ioL._SY355_.jpg",
+      "id": 5
+    },
+    {
+      "title": "Naxatras",
+      "artist": "Naxatras",
+      "year": "2015",
+      "rating": "7.9",
+      "tags": "stoner rock",
+      "cover": "https://f4.bcbits.com/img/a2484367374_10.jpg",
+      "id": 6
+    },
+    {
+      "title": "Black Sabbath",
+      "artist": "Black Sabbath",
+      "year": "1970",
+      "rating": "8.1",
+      "tags": "doom metal",
+      "cover": "https://images-na.ssl-images-amazon.com/images/I/81K4W71c38L._SX355_.jpg",
+      "id": 7
+    },
+    {
+      "title": "Paranoid",
+      "artist": "Black Sabbath",
+      "year": "1970",
+      "rating": "6.9",
+      "tags": "metal, rock",
+      "cover": "https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Black_Sabbath_-_Paranoid.jpg/220px-Black_Sabbath_-_Paranoid.jpg",
+      "id": 8
+    },
+    {
+      "title": "Torches",
+      "artist": "Foster The People",
+      "year": "2011",
+      "rating": "7.2",
+      "tags": "indie rock",
+      "cover": "https://images-na.ssl-images-amazon.com/images/I/81L7V3Q3rBL._SL1500_.jpg",
+      "id": 9
+    },
+    {
+      "title": "Smash",
+      "artist": "The Offspring",
+      "year": "1994",
+      "rating": "5.4",
+      "tags": "punk rock, hardcore punk, grunge rock",
+      "cover": "https://upload.wikimedia.org/wikipedia/en/thumb/8/80/TheOffspringSmashalbumcover.jpg/220px-TheOffspringSmashalbumcover.jpg",
+      "id": 10
+    },
+    {
+      "title": "Epitaph",
+      "artist": "God Is An Astronaut",
+      "year": "2018",
+      "rating": "7.6",
+      "tags": "space rock, post rock",
+      "cover": "https://f4.bcbits.com/img/a4149094641_10.jpg",
+      "id": 11
+    },
+    {
+      "title": "Helios / Erebus",
+      "artist": "God Is an Astronaut",
+      "year": "2015",
+      "rating": "7.9",
+      "tags": "space rock, post rock",
+      "cover": "https://i.ytimg.com/vi/YjWIAOsndu4/hqdefault.jpg",
+      "id": 12
+    }
+  ]
 }

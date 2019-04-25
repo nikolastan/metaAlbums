@@ -1,8 +1,22 @@
-#header, .menu, #sub, #randomAlbum{
+.menu, #randomAlbum, .albumTop10{
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;   
 }
 
+#sub{
+    position: absolute;
+    left: 45%;
+}
+
+#numberOfAlbumsContainer{
+    align-content: center;
+    text-align: center;
+}
+
+#header{
+    display: flex;
+    flex-direction: row;
+}
 .albumData{
     display: flex;
     flex-direction: column;
@@ -10,7 +24,7 @@
 
 #main{
     margin: auto;
-    width: 100%;
+    width: 50%;
 }
 
 .hide{
@@ -18,7 +32,13 @@
 }
 
 #search{
-    width: 50%;
+    width: 75%;
+}
+
+#randomAlbumContainer{
+padding-left: 5%;
+display: flex;
+flex-direction: column;
 }
 
 .mainContent{
@@ -28,15 +48,18 @@
 }
 
 .albumCover{
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
 }
 
 #form{
     display: flex;
     flex-direction: column;
+    width: 25%;
+    position: relative;
 }
 
-.top10{
-    align-self: flex-end;
+#top10{
+    position: absolute;
+    right: 0;
 }

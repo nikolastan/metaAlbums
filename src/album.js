@@ -49,7 +49,6 @@ export class Album
     {
         if(!host)
             throw new Error("Invalid host for appending!");
-        host.innerHTML = "";
         const cover = document.createElement("img");
         cover.className = "albumCover";
         cover.src = this.cover;
