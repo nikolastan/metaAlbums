@@ -30,11 +30,57 @@ export class Builder
         });
     }
 
+    newAlbumForm(host)
+    {
+            const form = document.createElement("div");
+
+            form.id = "form";
+            host.appendChild(form);
+
+            const title = document.createElement("input");
+            title.id = "titleInp";
+            title.placeholder = "Title";
+            form.appendChild(title);
+
+            const artist = document.createElement("input");
+            artist.id = "artistInp";
+            artist.placeholder = "Artist";
+            form.appendChild(artist);
+
+            const year = document.createElement("input");
+            year.type = "number";
+            year.min = 1900;
+            year.id = "yearInp";
+            year.placeholder = "Year";
+            form.appendChild(year);
+
+            const rating = document.createElement("input");
+            rating.type = "number";
+            rating.min = 1;
+            rating.max = 10;
+            rating.id = "ratingInp";
+            rating.placeholder = "Rating";
+            form.appendChild(rating);
+
+            const tags = document.createElement("textarea");
+            tags.id = "tagsInp";
+            tags.placeholder = "Tags";
+            form.appendChild(tags);
+
+            const submit = document.createElement("button");
+            submit.id = "submit";
+            submit.innerHTML = "Submit";
+            form.appendChild(submit);
+
+            form.style.display = "none";
+    }
+
     newAlbumHandlers()
     {
+        var form = document.getElementById("form");
         const newAlbumButtons = document.getElementsByClassName("newAlbum");
         Array.from(newAlbumButtons).forEach(element => {
-            element.onclick = (ev) => window.open("./newalbum.html", 'New Album Entry', 'height=500,width=400' ).focus();
+            element.onclick = (ev) => { form.style.display = "flex"; }
         });
     }
 

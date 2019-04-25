@@ -1,4 +1,4 @@
-import {from, fromEvent, timer} from "rxjs";
+import {from, fromEvent, timer, zip} from "rxjs";
 import {map, debounceTime, filter, switchMap, take} from "rxjs/operators";
 import {Builder} from "./builder.js";
 import {Album} from "./album.js";
@@ -8,6 +8,9 @@ export class Functionality
 {
     constructor(){
         this.builder = new Builder();
+
+        const host = document.getElementById("sub");
+        this.builder.newAlbumForm(host);
         this.builder.newAlbumHandlers();
     }
 
@@ -75,6 +78,46 @@ export class Functionality
         }
 
         return observerRandomAlbum;
+    }
+
+    createObserverValidate()
+    {
+        var builder = this.builder;
+        const observerValidate = {
+            next : function(value) {
+                console.log("Uspesna validacija!");
+            }
+        }
+        return observerValidate;
+    }
+
+    initiateForm(observerValidate)
+    {
+        const titleInp = document.getElementById("titleInp");
+        const artistInp = document.getElementById("artistInp");
+
+        function getAlbumBy(criteria, value){
+            return from(
+                fetch(`http://localhost:3000/albums?${criteria}=${value}`)
+                .then(response => response.json())
+            );
+        }
+
+        const titleValidateObservable = fromEvent(titleInp, "input").pipe(
+            debounceTime(1000),
+            map(ev => ev.target.value),
+            switchMap(value => getAlbumBy("title", value)),
+            filter(album => album.length === 0)
+        );
+
+        const artistValidateObservable = fromEvent(artistInp, "input").pipe(
+            debounceTime(1000),
+            map(ev => ev.target.value),
+            switchMap(value => getAlbumBy("artist", value)),
+            filter(album => album.length === 0)
+        );
+        
+        zip(titleValidateObservable, artistValidateObservable).subscribe(observerValidate);
     }
 
     initiateRandomAlbum(observerRandomAlbum)

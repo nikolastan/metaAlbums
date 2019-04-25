@@ -1,4 +1,4 @@
-#header, .menu1, .menu2, #sub, #randomAlbum{
+#header, .menu, #sub, #randomAlbum{
     display: flex;
     flex-direction: row;    
 }
@@ -35,4 +35,8 @@
 #form{
     display: flex;
     flex-direction: column;
+}
+
+.top10{
+    align-self: flex-end;
 }

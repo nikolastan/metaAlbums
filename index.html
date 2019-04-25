@@ -6,25 +6,28 @@
     </head>
     <body>
         <div id = "header">
-            <div class = "menu1">
+            <div class = "menu">
                 <button class="newAlbum">Add New Album</button>
             </div>
             <div id = "main">
                 <h1 id = "headTitle" class = "mainContent">metaAlbums</h1>
                 <input id = "search" class = "mainContent">
             </div>
-            <div class = "menu2">
-                <button id="top10">Top 10 Rated Albums</button>
-            </div>
+            <h3>Top 10 Rated Albums</h3>
         </div>
-        <div id = "sub">
-            <table id = "searchResults"></table>
-            <div id = "noResults">
-                <h2>No results!</h2>
-                <a class="newAlbum" href="">Make a new entry!</a> 
+        <div class = "content">
+            <div id = "sub">
+                <table id = "searchResults"></table>
+                <div id = "noResults">
+                    <h2>No results!</h2>
+                    <button class="newAlbum">Make a new entry!</a> 
+                </div>
+                <div id = "randomAlbumContainer">
+                </div>        
             </div>
-            <div id = "randomAlbumContainer">
-            </div>        
+            <div class = "top10">
+                
+            </div>
         </div>
         <script src = "bundle.js"></script>
     </body>
