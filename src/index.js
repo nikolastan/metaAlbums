@@ -1,16 +1,35 @@
-import {Functionality} from "./functionality.js";
+import {
+    AddAlbum,
+    Search,
+    Random,
+    Top10,
+    NumberOfAlbums
+} from "./components/components";
+import {
+    Builder
+} from "./builder"
 
-const worker = new Functionality();
+const builder = new Builder();
 
-const observerSearch = worker.createObserverSearch();
-const observerNumber = worker.createObserverNumber();
-const observerRandomAlbum = worker.createObserverRandomAlbum();
-const observerValidate = worker.createObserverValidate();
-const observerSubmit = worker.createObserverSubmit();
-const observerTop10 = worker.createObserverTop10();
+var host = document.getElementById("subContent");
+builder.newAlbumForm(host);
+builder.newAlbumHandlers();
 
-const submitObservable = worker.initiateForm(observerValidate, observerSubmit);
-worker.initiateSearch(observerSearch);
-worker.initiateNumberOfAlbums(observerNumber, submitObservable);
-worker.initiateRandomAlbum(observerRandomAlbum);
-worker.initiateTop10(observerTop10, submitObservable);
+const addAlbum = new AddAlbum();
+const numberOfAlbums = new NumberOfAlbums();
+const random = new Random();
+const top10 = new Top10();
+const search = new Search();
+
+const observerSearch = search.createObserverSearch();
+const observerNumber = numberOfAlbums.createObserverNumber();
+const observerRandomAlbum = random.createObserverRandomAlbum();
+const observerValidate = addAlbum.createObserverValidate();
+const observerSubmit = addAlbum.createObserverSubmit();
+const observerTop10 = top10.createObserverTop10();
+
+const submitObservable = addAlbum.initiateForm(observerValidate, observerSubmit);
+search.initiateSearch(observerSearch);
+numberOfAlbums.initiateNumberOfAlbums(observerNumber, submitObservable);
+random.initiateRandomAlbum(observerRandomAlbum);
+top10.initiateTop10(observerTop10, submitObservable);
