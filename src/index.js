@@ -8,6 +8,8 @@ import {
 import {
     Builder
 } from "./builder"
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
 const builder = new Builder();
 

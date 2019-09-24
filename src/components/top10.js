@@ -1,6 +1,6 @@
 import {
     of ,
-    concat
+    merge
 } from "rxjs";
 import {
     switchMap,
@@ -21,7 +21,7 @@ export class Top10 {
     }
     initiateTop10(observerTop10, submitObservable) {
         const onLoad = of ("value");
-        concat(onLoad, submitObservable).pipe(
+        merge(onLoad, submitObservable).pipe(
             switchMap(() => this.ServerFunctions.getAlbumsSortedByRating(10))
         ).subscribe(observerTop10);
     }

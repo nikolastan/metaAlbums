@@ -39,7 +39,6 @@ export class Search {
                 builder.drawTable(listOfAlbums);
             },
             error: function (error) {
-                //displayOops();
                 console.log(error);
             }
         }
@@ -48,7 +47,7 @@ export class Search {
 
     initiateSearch(observerSearch) {
         const search = document.getElementById("search");
-        const searchObservable = fromEvent(search, "change").pipe(
+        const searchObservable = fromEvent(search, "input").pipe(
             debounceTime(1000),
             map(ev => ev.target.value),
             filter(function (value) {

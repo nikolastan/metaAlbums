@@ -32,7 +32,6 @@ export class AddAlbum {
         var builder = this.Builder;
         const observerValidate = {
             next: function (value) {
-                console.log(value);
                 if (value[0] === 'valid') {
                     titleInp.style.backgroundColor = "green";
                     artistInp.style.backgroundColor = "green";
@@ -122,7 +121,7 @@ export class AddAlbum {
         combineLatest(titleArtistValidate, coverValidate).subscribe(observerValidate);
 
         const submitObservable = fromEvent(submitBtn, 'click').pipe(
-            switchMap(event => zip( of (titleInp.value), of (artistInp.value), of (yearInp.value), of (ratingInp.value), of (tagsInp.value), of (coverInp.value)))
+            switchMap(() => zip( of (titleInp.value), of (artistInp.value), of (yearInp.value), of (ratingInp.value), of (tagsInp.value), of (coverInp.value)))
         );
 
         submitObservable.subscribe(observerSubmit);
